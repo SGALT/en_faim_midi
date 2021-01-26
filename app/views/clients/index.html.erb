@@ -1,0 +1,5 @@
+<h1>Clients#index</h1>
+<% @clients.each do |client| %>
+  <p><%= client.name %> -- <%= client.formule %></p>
+  <%= link_to "éditer le client", edit_client_path(client), class: "btn btn-danger" %>
+<% end %>

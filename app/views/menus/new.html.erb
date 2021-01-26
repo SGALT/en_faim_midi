@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Nouveau menu</h1>
+  <%= simple_form_for @menu do |m| %>
+    <%= m.input :name, collection: ["menu 1", "menu 2"], default: "menu 1" %>
+    <%= m.input :date %>
+    <%= m.simple_fields_for :menu_items do |mi| %>
+      <div class="menu-item">
+        <!-- <p><strong>Potage</strong></p> -->
+        <%= mi.input :category %>
+        <%= mi.input :name %>
+      </div>
+    <% end %>
+    <%= m.button :submit, class: "btn btn-dark" %>
+  <% end %>
+</div>

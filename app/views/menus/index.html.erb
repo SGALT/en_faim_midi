@@ -1,0 +1,9 @@
+<h1>Menus#index</h1>
+<p>Find me in app/views/menus/index.html.erb</p>
+<%= @menus.last.name %>
+<%= @menus.last.date %>
+<% Menu.last.menu_items.each do |item| %>
+  <p>
+    <%= item.name %>
+  </p>
+<% end %>

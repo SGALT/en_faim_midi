@@ -1,37 +1,12 @@
 <div class="container">
-  <h1>editer menu</h1>
+  <h1 class="text-center">Editer menu</h1>
   <%= simple_form_for @menu do |m| %>
     <%= m.input :name, collection: ["menu 1", "menu 2"], default: "menu 1" %>
     <%= m.input :date %>
     <%= m.simple_fields_for :menu_items do |mi| %>
       <div class="menu-item">
-        <p><strong>Potage</strong></p>
-        <%= mi.input :category, input_html: {value: "potage"} %>
-        <%= mi.input :name %>
-      </div>
-      <div class="menu-item">
-        <p><strong>Entrée</strong></p>
-        <%= mi.input :category, input_html: {value: "entrée"} %>
-        <%= mi.input :name %>
-      </div>
-      <div class="menu-item">
-        <p><strong>Plat</strong></p>
-        <%= mi.input :category, input_html: {value: "plat"} %>
-        <%= mi.input :name %>
-      </div>
-      <div class="menu-item">
-        <p><strong>Accompagnement</strong></p>
-        <%= mi.input :category, input_html: {value: "accompagnement"} %>
-        <%= mi.input :name %>
-      </div>
-      <div class="menu-item">
-        <p><strong>Fromage</strong></p>
-        <%= mi.input :category, input_html: {value: "fromage"} %>
-        <%= mi.input :name %>
-      </div>
-      <div class="menu-item">
-        <p><strong>Dessert</strong></p>
-        <%= mi.input :category, input_html: {value: "dessert"} %>
+        <!-- <p><strong>Potage</strong></p> -->
+        <%= mi.input :category %>
         <%= mi.input :name %>
       </div>
     <% end %>

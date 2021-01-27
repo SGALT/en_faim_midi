@@ -1,0 +1,12 @@
+<h1>ICI C INDEX MENU CHOICES</h1>
+<%= @menus.first.name %>
+<% if @menus.first.clients.nil? %>
+  <h2>Ce menu n'a pas encore de clients sélectionnés</h2>
+<% else %>
+  <% @menus.first.clients.each do |client| %>
+    <p>
+      <%= client.name %>
+    </p>
+  <% end %>
+<% end %>
+<%= link_to "first menu new choices", new_menu_choice_path(menu_id: @menus.first.id)  %>

@@ -1,0 +1,6 @@
+<h1><%= @menu.name %> -- <%= @menu.date %> : Sélectionnez les clients</h1>
+<%= simple_form_for @menu_choice do |mc| %>
+  <%= mc.association :menu, default: @menu %>
+  <%= mc.association :client, as: :check_boxes %>
+  <%= mc.button :submit %>
+<% end %>

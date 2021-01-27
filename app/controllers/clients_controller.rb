@@ -31,6 +31,8 @@ class ClientsController < ApplicationController
   end
 
   def destroy
+    @client.delete
+    redirect_to clients_path
   end
 
   private

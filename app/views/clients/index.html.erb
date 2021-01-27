@@ -1,5 +1,14 @@
-<h1>Clients#index</h1>
+<h1 class="text-center">Tous les clients</h1>
+  <p>NOM Prénom -- Formule</p>
 <% @clients.each do |client| %>
-  <p><%= client.name %> -- <%= client.formule %></p>
-  <%= link_to "éditer le client", edit_client_path(client), class: "btn btn-danger" %>
+  <p>
+    <%= client.name %> -- <%= client.formule %>
+    <%= link_to edit_client_path(client) do %>
+      <i class="fas fa-edit"></i>
+    <% end %>
+    <%= link_to client_path(client), method: :delete do %>
+      <i class="fas fa-trash-alt"></i>
+    <% end %>
+  </p>
 <% end %>
+<%= link_to 'Ajouter un nouveau client', new_client_path, class: "btn btn-dark" %>

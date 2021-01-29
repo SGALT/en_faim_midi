@@ -1,0 +1,22 @@
+.menus {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 8px;
+}
+
+.disable {
+  pointer-events:none;background: #f2f2f2;
+}
+
+.menu-table-75 {
+  width: 75%;
+  border: solid 1px black;
+  padding: 4px;
+}
+
+.menu-table-25 {
+  width: 25%;
+  border: solid 1px black;
+  padding: 4px;
+
+}

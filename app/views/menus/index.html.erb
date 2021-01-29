@@ -1,18 +1,77 @@
-<h1>Tous les menus</h1>
-<% @menus_future.each do |menu| %>
-  <p>
-    <%= menu.name %> -- <%= menu.date %>
-    <%= link_to edit_menu_path(menu) do %>
-      <i class="fas fa-edit"></i>
+<div class="container">
+  <%= link_to  'Download as excel', menus_path(format: :xlsx)  %>
+  <div class="mt-4 mb-4">
+    <%= form_tag menus_path, method: :get do %>
+      <%= date_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "date de départ"
+    %>
+      <%= submit_tag "Valider", class: "btn btn-primary" %>
     <% end %>
-    <%= link_to menu_path(menu), method: :delete do %>
-      <i class="fas fa-trash-alt"></i>
-    <% end %>
-  </p>
-  <ul>
-    <% menu.menu_items.each do |item| %>
-      <li><%= item.category %> : <%= item.name %></li>
-    <% end %>
-  </ul>
-<% end %>
-<%= link_to "Ajouter un menu", new_menu_path, class: "btn btn-dark" %>
+  </div>
+  <h1 class="mt-4">Tous les menus</h1>
+  <%= link_to "Ajouter un menu", new_menu_path, class: "btn btn-dark" %>
+  <div class="d-flex flex-column">
+    <div class="menus">
+      <% @menus_future.where(name: 'menu 1').each do |menu| %>
+        <div class="d-flex flex-column">
+          <p>
+            <%= menu.name %>
+          </p>
+          <p>
+            <%= menu.date %>
+            <%= link_to edit_menu_path(menu) do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+            <%= link_to menu_path(menu), method: :delete do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          </p>
+          <ul class="p-0">
+            <% menu.menu_items.order(:position).each do |item| %>
+              <li class="d-flex flex-row">
+                <span class="menu-table-75">
+                  <%= item.name %>
+                </span>
+                <span class="menu-table-25">
+                  <strong><%= item.quantity %></strong>
+                </span>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <div class="menus">
+      <% @menus_future.where(name: 'menu 2').each do |menu| %>
+        <div class="d-flex flex-column">
+          <p>
+            <%= menu.name %>
+          </p>
+          <p>
+            <%= menu.date %>
+            <%= link_to edit_menu_path(menu) do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+            <%= link_to menu_path(menu), method: :delete do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          </p>
+          <ul class="p-0">
+            <% menu.menu_items.order(:position).each do |item| %>
+              <li class="d-flex flex-row">
+                <span class="menu-table-75">
+                  <%= item.name %>
+                </span>
+                <span class="menu-table-25">
+                  <strong><%= item.quantity %></strong>
+                </span>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

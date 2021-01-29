@@ -4,7 +4,7 @@
 <div class="container">
   <%= simple_form_for @client do |f| %>
     <%= f.input :name %>
-    <%= f.input :formule, collection: ["7C", "2C", "3C", "10C"], default: "7C" %>
+    <%= f.input :formule, collection: ["7C", "2C", "3C", "10C entrée", "10C potage", "10C dessert"], default: "7C" %>
     <%= f.input :specificity, input_html: {value: "aucune"} %>
     <%= f.button :submit %>
   <% end %>

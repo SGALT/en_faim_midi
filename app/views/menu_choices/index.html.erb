@@ -1,12 +1,18 @@
-<h1>ICI C INDEX MENU CHOICES</h1>
-<%= @menus.first.name %>
-<% if @menus.first.clients.nil? %>
-  <h2>Ce menu n'a pas encore de clients sélectionnés</h2>
-<% else %>
-  <% @menus.first.clients.each do |client| %>
-    <p>
-      <%= client.name %>
-    </p>
+<div class="container">
+  <h2 class="text-center">Attribution de menus</h2>
+  <% @menus.each do |menu| %>
+    <h3>
+      <%= menu.name %> -- <%= menu.date %>
+    </h3>
+    <% if menu.clients.empty? %>
+      <h2>Ce menu n'a pas encore de clients sélectionnés</h2>
+    <% else %>
+      <% menu.clients.each do |client| %>
+        <p>
+          <%= client.name %>
+        </p>
+      <% end %>
+    <% end %>
+    <%= link_to "attribution du menu", new_menu_choice_path(menu_id: menu), class: "btn btn-dark"  %>
   <% end %>
-<% end %>
-<%= link_to "first menu new choices", new_menu_choice_path(menu_id: @menus.first.id)  %>
+</div>

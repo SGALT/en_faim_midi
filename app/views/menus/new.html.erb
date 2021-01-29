@@ -2,12 +2,15 @@
   <h1 class="text-center">Nouveau menu</h1>
   <%= simple_form_for @menu do |m| %>
     <%= m.input :name, collection: ["menu 1", "menu 2"], default: "menu 1" %>
-    <%= m.input :date %>
+    <%= m.input :date, as: :date, html5: true %>
     <%= m.simple_fields_for :menu_items do |mi| %>
       <div class="menu-item">
-        <!-- <p><strong>Potage</strong></p> -->
-        <%= mi.input :category %>
+        <span class="disable">
+          <%= mi.input :category, hint: "Impossible de changer ce champ" %>
+        </span>
         <%= mi.input :name %>
+        <%= mi.input :quantity, as: :hidden %>
+        <%= mi.input :position, as: :hidden %>
       </div>
     <% end %>
     <%= m.button :submit, class: "btn btn-dark" %>

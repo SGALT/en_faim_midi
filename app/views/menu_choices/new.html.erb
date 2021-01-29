@@ -1,6 +1,8 @@
-<h1><%= @menu.name %> -- <%= @menu.date %> : Sélectionnez les clients</h1>
-<%= simple_form_for @menu_choice do |mc| %>
-  <%= mc.association :menu, default: @menu %>
-  <%= mc.association :client, as: :check_boxes %>
-  <%= mc.button :submit %>
-<% end %>
+<div class="container">
+  <h2 class="text-center"><%= @menu.name %> -- <%= @menu.date %> : Sélectionnez les clients</h2>
+  <%= simple_form_for @menu_choice do |mc| %>
+    <%= mc.input :menu, as: :hidden, input_html: { value: @menu.id }%>
+    <%= mc.association :client, as: :check_boxes %>
+    <%= mc.button :submit, class: "btn btn-dark d-block w-75 mx-auto" %>
+  <% end %>
+</div>

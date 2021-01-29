@@ -1,5 +1,5 @@
 <div class="container">
-  <%= link_to  'Download as excel', menus_path(format: :xlsx)  %>
+  <%= link_to  'Fiche de production Excel', menus_path(format: :xlsx), class: "btn btn-danger m-4"  %>
   <div class="mt-4 mb-4">
     <%= form_tag menus_path, method: :get do %>
       <%= date_field_tag :query,

@@ -8,6 +8,12 @@ class MenusController < ApplicationController
       @menus = Menu.all
       @menus_future = Menu.where(date: Date.today..DateTime::Infinity.new).order(:date)
     end
+    headers = ['Type','Menu','Quantité']
+    # data = set_data(@menus)
+    respond_to do |format|
+      format.html
+      format.xlsx { render xlsx: SpreadsheetArchitect.to_xlsx(headers: headers, data: set_data(@menus)) }
+    end
   end
 
   def new
@@ -56,6 +62,17 @@ class MenusController < ApplicationController
 
   private
 
+  def set_data(menus)
+    types = ['POTAGE', 'ENTREE', 'PLAT', 'ACCOMPAGNEMENT', 'FROMAGE', 'DESSERT', 'PAIN']
+    array = []
+    menus.each do |menu|
+      array << ["", "#{menu.name} -- #{menu.date}", ""]
+      menu.menu_items.order(:position).each_with_index do |menu_item, index|
+        array << [types[index], menu_item.name, menu_item.quantity.to_s]
+      end
+    end
+    array
+  end
   def set_menu
     @menu = Menu.find(params[:id])
   end

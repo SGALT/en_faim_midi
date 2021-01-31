@@ -8,11 +8,11 @@ class MenusController < ApplicationController
       @menus = Menu.all
       @menus_future = Menu.where(date: Date.today..DateTime::Infinity.new).order(:date)
     end
-    headers = ['Type','Menu','Quantité']
+    headers = ['Type', 'Menu', 'Quantité', ""] * 7
     # data = set_data(@menus)
     respond_to do |format|
       format.html
-      format.xlsx { render xlsx: SpreadsheetArchitect.to_xlsx(headers: headers, data: set_data(@menus)) }
+      format.xlsx { render xlsx: SpreadsheetArchitect.to_xlsx(headers: headers, data: data(@menus_future)), wrap_text: true }
     end
   end
 
@@ -62,17 +62,138 @@ class MenusController < ApplicationController
 
   private
 
-  def set_data(menus)
+  def data(menus)
     types = ['POTAGE', 'ENTREE', 'PLAT', 'ACCOMPAGNEMENT', 'FROMAGE', 'DESSERT', 'PAIN']
     array = []
-    menus.each do |menu|
-      array << ["", "#{menu.name} -- #{menu.date}", ""]
+    menus_1 = menus.where(name: "menu 1").order(:date)
+    menus_2 = menus.where(name: "menu 2").order(:date)
+    row_title_1 = []
+    row_potage_1 = []
+    row_entree_1 = []
+    row_plat_1 = []
+    row_acc_1 = []
+    row_fromage_1 = []
+    row_dessert_1 = []
+    row_pain_1 = []
+    row_separation = [""] * 28
+    row_title_2 = []
+    row_potage_2 = []
+    row_entree_2 = []
+    row_plat_2 = []
+    row_acc_2 = []
+    row_fromage_2 = []
+    row_dessert_2 = []
+    row_pain_2 = []
+    menus_1.each do |menu|
+      row_title_1 << ""
+      row_title_1 << "#{menu.name} -- #{menu.date}"
+      row_title_1 << ""
+      row_title_1 << ""
       menu.menu_items.order(:position).each_with_index do |menu_item, index|
-        array << [types[index], menu_item.name, menu_item.quantity.to_s]
+        case menu_item.category
+        when "POTAGE"
+          row_potage_1 << types[index]
+          row_potage_1 << menu_item.name
+          row_potage_1 << menu_item.quantity.to_s
+          row_potage_1 << ""
+        when "ENTREE"
+          row_entree_1 << types[index]
+          row_entree_1 << menu_item.name
+          row_entree_1 << menu_item.quantity.to_s
+          row_entree_1 << ""
+        when "PLAT"
+          row_plat_1 << types[index]
+          row_plat_1 << menu_item.name
+          row_plat_1 << menu_item.quantity.to_s
+          row_plat_1 << ""
+        when "ACCOMPAGNEMENT"
+          row_acc_1 << types[index]
+          row_acc_1 << menu_item.name
+          row_acc_1 << menu_item.quantity.to_s
+          row_acc_1 << ""
+        when "FROMAGE"
+          row_fromage_1 << types[index]
+          row_fromage_1 << menu_item.name
+          row_fromage_1 << menu_item.quantity.to_s
+          row_fromage_1 << ""
+        when "DESSERT"
+          row_dessert_1 << types[index]
+          row_dessert_1 << menu_item.name
+          row_dessert_1 << menu_item.quantity.to_s
+          row_dessert_1 << ""
+        when "PAIN"
+          row_pain_1 << types[index]
+          row_pain_1 << menu_item.name
+          row_pain_1 << menu_item.quantity.to_s
+          row_pain_1 << ""
+        end
       end
     end
+    menus_2.each do |menu|
+      row_title_2 << ""
+      row_title_2 << "#{menu.name} -- #{menu.date}"
+      row_title_2 << ""
+      row_title_2 << ""
+      menu.menu_items.order(:position).each_with_index do |menu_item, index|
+        case menu_item.category
+        when "POTAGE"
+          row_potage_2 << types[index]
+          row_potage_2 << menu_item.name
+          row_potage_2 << menu_item.quantity.to_s
+          row_potage_2 << ""
+        when "ENTREE"
+          row_entree_2 << types[index]
+          row_entree_2 << menu_item.name
+          row_entree_2 << menu_item.quantity.to_s
+          row_entree_2 << ""
+        when "PLAT"
+          row_plat_2 << types[index]
+          row_plat_2 << menu_item.name
+          row_plat_2 << menu_item.quantity.to_s
+          row_plat_2 << ""
+        when "ACCOMPAGNEMENT"
+          row_acc_2 << types[index]
+          row_acc_2 << menu_item.name
+          row_acc_2 << menu_item.quantity.to_s
+          row_acc_2 << ""
+        when "FROMAGE"
+          row_fromage_2 << types[index]
+          row_fromage_2 << menu_item.name
+          row_fromage_2 << menu_item.quantity.to_s
+          row_fromage_2 << ""
+        when "DESSERT"
+          row_dessert_2 << types[index]
+          row_dessert_2 << menu_item.name
+          row_dessert_2 << menu_item.quantity.to_s
+          row_dessert_2 << ""
+        when "PAIN"
+          row_pain_2 << types[index]
+          row_pain_2 << menu_item.name
+          row_pain_2 << menu_item.quantity.to_s
+          row_pain_2 << ""
+        end
+      end
+    end
+    array << row_title_1
+    array << row_potage_1
+    array << row_entree_1
+    array << row_plat_1
+    array << row_acc_1
+    array << row_fromage_1
+    array << row_dessert_1
+    array << row_pain_1
+    array << [""] * 28
+    array << row_title_2
+    array << row_potage_2
+    array << row_entree_2
+    array << row_plat_2
+    array << row_acc_2
+    array << row_fromage_2
+    array << row_dessert_2
+    array << row_pain_2
     array
   end
+
   def set_menu
     @menu = Menu.find(params[:id])
   end

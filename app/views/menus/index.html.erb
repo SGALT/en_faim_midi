@@ -1,5 +1,9 @@
 <div class="container">
-  <%= link_to  'Fiche de production Excel', menus_path(format: :xlsx), class: "btn btn-danger m-4"  %>
+  <% if params[:query] %>
+    <%= link_to  'Fiche de production Excel', menus_path(format: :xlsx), class: "btn btn-danger m-4 d-block mx-auto w-25"  %>
+  <% else %>
+    <h2 class="text-center bg-dark text-white m-4">Pour générer la fiche de production : définir une date de départ ci-dessous</h2>
+  <% end %>
   <div class="mt-4 mb-4">
     <%= form_tag menus_path, method: :get do %>
       <%= date_field_tag :query,
@@ -7,11 +11,11 @@
       class: "form-control",
       placeholder: "date de départ"
     %>
-      <%= submit_tag "Valider", class: "btn btn-primary" %>
+      <%= submit_tag "Valider", class: "btn btn-primary d-block mx-auto w-25 m-2" %>
     <% end %>
   </div>
-  <h1 class="mt-4">Tous les menus</h1>
-  <%= link_to "Ajouter un menu", new_menu_path, class: "btn btn-dark" %>
+  <h1 class="mt-4 text-center">Tous les menus</h1>
+  <%= link_to "Ajouter un menu", new_menu_path, class: "btn btn-dark d-block mx-auto m-2" %>
   <div class="d-flex flex-column">
     <div class="menus">
       <% @menus_future.where(name: 'menu 1').each do |menu| %>

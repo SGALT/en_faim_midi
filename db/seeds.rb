@@ -5,3 +5,26 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+puts "cleaning database of Menus and Menu_choices"
+Menu.destroy_all
+
+puts "database clean !"
+
+puts "Creating 7 menus...."
+
+date = Date.today + 1
+types = ['POTAGE', 'ENTREE', 'PLAT', 'ACCOMPAGNEMENT', 'FROMAGE', 'DESSERT', 'PAIN']
+menu_items = ['Velouté légumes verts', 'Carottes cuites vinaigrette', 'Sauté de veau marengo', 'Pommes de terre sautées', 'Brie de Meaux', 'Raisins', 'pain']
+
+7.times do
+  menu_1 = Menu.create(name: "menu 1", date: date)
+  menu_2 = Menu.create(name: "menu 2", date: date)
+  types.each_with_index do |type, index|
+    MenuItem.create(category: type, name: menu_items[index], quantity:0, menu: menu_1 )
+    MenuItem.create(category: type, name: menu_items[index], quantity: 0, menu: menu_2 )
+  end
+  date += 1
+end
+
+puts "everything ok !!"

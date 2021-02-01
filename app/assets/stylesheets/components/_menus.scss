@@ -4,6 +4,12 @@
   grid-gap: 8px;
 }
 
+.menus-attr {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 8px;
+}
+
 .disable {
   pointer-events:none;background: #f2f2f2;
 }

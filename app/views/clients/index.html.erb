@@ -1,14 +1,36 @@
-<h1 class="text-center">Tous les clients</h1>
-  <p>NOM Prénom -- Formule</p>
-<% @clients.each do |client| %>
-  <p>
-    <%= client.name %> -- <%= client.formule %>
-    <%= link_to edit_client_path(client) do %>
-      <i class="fas fa-edit"></i>
+<div class="container">
+  <div class="mt-4 mb-4">
+    <h2 class="text-center">
+      Pour générer la planche d'étiquettes : saisir la date de départ et le nombres de jours puis cliquer sur valider
+    </h2>
+    <%= form_tag clients_path, method: :get do %>
+      <%= date_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "date de départ"
+      %>
+      <%= number_field_tag :duration,
+      params[:duration],
+      class: "form-control",
+      placeholder: "Combien de jours ?"
+      %>
+      <%= submit_tag "Valider", class: "btn btn-primary d-block mx-auto w-25 m-2" %>
     <% end %>
-    <%= link_to client_path(client), method: :delete do %>
-      <i class="fas fa-trash-alt"></i>
+  </div>
+  <h1 class="text-center">Tous les clients</h1>
+  <%= link_to 'Ajouter un nouveau client', new_client_path, class: "btn btn-dark d-block mx-auto w-25" %>
+  <p class="text-center mt-5">NOM Prénom -- Formule</p>
+  <div class="d-flex flex-column align-items-center">
+    <% @clients.each do |client| %>
+      <p>
+        <%= client.name %> -- <%= client.formule %>
+        <%= link_to edit_client_path(client) do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+        <%= link_to client_path(client), method: :delete do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </p>
     <% end %>
-  </p>
-<% end %>
-<%= link_to 'Ajouter un nouveau client', new_client_path, class: "btn btn-dark" %>
+  </div>
+</div>

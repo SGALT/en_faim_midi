@@ -1,18 +1,26 @@
 <div class="container">
-  <h2 class="text-center">Attribution de menus</h2>
-  <% @menus.each do |menu| %>
-    <h3>
-      <%= menu.name %> -- <%= menu.date %>
-    </h3>
-    <% if menu.clients.empty? %>
-      <h2>Ce menu n'a pas encore de clients sélectionnés</h2>
-    <% else %>
-      <% menu.clients.each do |client| %>
-        <p>
-          <%= client.name %>
-        </p>
-      <% end %>
+  <h2 class="text-center m-5">Attribution de menus</h2>
+  <div class="menus-attr">
+    <% @menus.each do |menu| %>
+      <div class="border border-dark">
+        <h3>
+          <%= menu.name %> -- <%= l(menu.date, format: '%d/%m/%Y') %>
+        </h3>
+        <% if menu.clients.empty? %>
+          <h2>Ce menu n'a pas encore de clients sélectionnés</h2>
+        <% else %>
+          <% menu.clients.each do |client| %>
+            <p>
+              <%= client.name %>
+            </p>
+          <% end %>
+        <% end %>
+        <% if !menu.clients.any? %>
+          <%= link_to "attribution du menu", new_menu_choice_path(menu_id: menu), class: "btn btn-dark d-block mx-auto w-25"  %>
+        <% else %>
+          <%= link_to "éditer l'attribution du menu", edit_menu_choice_path(id: menu), class: "btn btn-dark d-block mx-auto w-25 m-4"  %>
+        <% end %>
+      </div>
     <% end %>
-    <%= link_to "attribution du menu", new_menu_choice_path(menu_id: menu), class: "btn btn-dark"  %>
-  <% end %>
+  </div>
 </div>

@@ -1,9 +1,5 @@
 <div class="container">
-  <% if params[:query] %>
-    <%= link_to  'Fiche de production Excel', menus_path(format: :xlsx), class: "btn btn-danger m-4 d-block mx-auto w-25"  %>
-  <% else %>
-    <h2 class="text-center bg-dark text-white m-4">Pour générer la fiche de production : définir une date de départ ci-dessous</h2>
-  <% end %>
+  <h2 class="text-center bg-dark text-white m-4">Pour générer la fiche de production : définir une date de départ ci-dessous</h2>
   <div class="mt-4 mb-4">
     <%= form_tag menus_path, method: :get do %>
       <%= date_field_tag :query,
@@ -24,7 +20,7 @@
             <%= menu.name %>
           </p>
           <p>
-            <%= menu.date %>
+            <%= l(menu.date, format: '%d/%m/%Y') %>
             <%= link_to edit_menu_path(menu) do %>
               <i class="fas fa-edit"></i>
             <% end %>
@@ -54,7 +50,7 @@
             <%= menu.name %>
           </p>
           <p>
-            <%= menu.date %>
+            <%= l(menu.date, format: '%d/%m/%Y') %>
             <%= link_to edit_menu_path(menu) do %>
               <i class="fas fa-edit"></i>
             <% end %>

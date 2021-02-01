@@ -23,20 +23,22 @@ class MenuChoicesController < ApplicationController
         case client.formule
         when "7C"
           @menu.menu_items.each do |menu_item|
-            quantity = menu_item.quantity -= 1
+            quantity = menu_item.quantity - 1
             menu_item.update(quantity: quantity)
           end
         when "2C"
           @menu.menu_items.each do |menu_item|
             if menu_item.category == "PLAT" || menu_item.category == "ACCOMPAGNEMENT"
-              quantity = menu_item.quantity -= 1
+              quantity = menu_item.quantity - 1
               menu_item.update(quantity: quantity)
             end
           end
         when "3C"
-          if menu_item.category == "PLAT" || menu_item.category == "ACCOMPAGNEMENT" || menu_item.category == "PAIN"
-            quantity = menu_item.quantity -= 1
-            menu_item.update(quantity: quantity)
+          @menu.menu_items.each do |menu_item|
+            if menu_item.category == "PLAT" || menu_item.category == "ACCOMPAGNEMENT" || menu_item.category == "PAIN"
+              quantity = menu_item.quantity - 1
+              menu_item.update(quantity: quantity)
+            end
           end
         when "10C entrée"
           @menu.menu_items.each do |menu_item|
@@ -75,20 +77,22 @@ class MenuChoicesController < ApplicationController
         case client.formule
         when "7C"
           @menu.menu_items.each do |menu_item|
-            quantity = menu_item.quantity += 1
+            quantity = menu_item.quantity + 1
             menu_item.update(quantity: quantity)
           end
         when "2C"
           @menu.menu_items.each do |menu_item|
             if menu_item.category == "PLAT" || menu_item.category == "ACCOMPAGNEMENT"
-              quantity = menu_item.quantity += 1
+              quantity = menu_item.quantity + 1
               menu_item.update(quantity: quantity)
             end
           end
         when "3C"
-          if menu_item.category == "PLAT" || menu_item.category == "ACCOMPAGNEMENT" || menu_item.category == "PAIN"
-            quantity = menu_item.quantity += 1
-            menu_item.update(quantity: quantity)
+          @menu.menu_items.each do |menu_item|
+            if menu_item.category == "PLAT" || menu_item.category == "ACCOMPAGNEMENT" || menu_item.category == "PAIN"
+              quantity = menu_item.quantity + 1
+              menu_item.update(quantity: quantity)
+            end
           end
         when "10C entrée"
           @menu.menu_items.each do |menu_item|
@@ -138,20 +142,22 @@ class MenuChoicesController < ApplicationController
         case client.formule
         when "7C"
           @menu.menu_items.each do |menu_item|
-            quantity = menu_item.quantity += 1
+            quantity = menu_item.quantity + 1
             menu_item.update(quantity: quantity)
           end
         when "2C"
           @menu.menu_items.each do |menu_item|
             if menu_item.category == "PLAT" || menu_item.category == "ACCOMPAGNEMENT"
-              quantity = menu_item.quantity += 1
+              quantity = menu_item.quantity + 1
               menu_item.update(quantity: quantity)
             end
           end
         when "3C"
-          if menu_item.category == "PLAT" || menu_item.category == "ACCOMPAGNEMENT" || menu_item.category == "PAIN"
-            quantity = menu_item.quantity += 1
-            menu_item.update(quantity: quantity)
+          @menu.menu_items.each do |menu_item|
+            if menu_item.category == "PLAT" || menu_item.category == "ACCOMPAGNEMENT" || menu_item.category == "PAIN"
+              quantity = menu_item.quantity + 1
+              menu_item.update(quantity: quantity)
+            end
           end
         when "10C entrée"
           @menu.menu_items.each do |menu_item|
@@ -193,12 +199,12 @@ class MenuChoicesController < ApplicationController
   end
 
   def update_items(menu_item)
-    quantity = menu_item.quantity += 1
+    quantity = menu_item.quantity + 1
     menu_item.update(quantity: quantity)
   end
 
   def minus_items(menu_item)
-    quantity = menu_item.quantity -= 1
+    quantity = menu_item.quantity - 1
     menu_item.update(quantity: quantity)
   end
 end

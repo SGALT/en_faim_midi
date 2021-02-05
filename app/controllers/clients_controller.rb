@@ -9,7 +9,6 @@ class ClientsController < ApplicationController
       styles = wb.styles
       wrap_text = styles.add_style(alignment: { horizontal: :center, vertical: :center, wrap_text: true })
       wb.add_worksheet(name: 'Planche étiquettes') do |sheet|
-        sheet.add_row(["etiquette"])
         @clients.each do |client|
           client.menus.where(date: params[:query].to_date..(params[:query].to_date + params[:duration].to_i)).order(:date).each do |menu|
             rt = Axlsx::RichText.new
@@ -17,7 +16,7 @@ class ClientsController < ApplicationController
             rt.add_run("\n")
             rt.add_run("formule : #{client.formule} -- spécificité : #{client.specificity}")
             rt.add_run("\n")
-            rt.add_run("#{menu.name} -- #{l(menu.date, format: '%d/%m/%Y')}")
+            rt.add_run("#{menu.name} -- #{l(menu.date, format: '%A %d %B %Y')}")
             rt.add_run("\n")
             if client.formule.include?("10C")
               menu.menu_items.order(:position).each do |menu_item|

@@ -6,7 +6,7 @@ class MenusController < ApplicationController
       @menus_future = Menu.where(date: params[:query].to_date..(params[:query].to_date + 6)).order(:date)
       data(@menus_future)
     else
-      @menus = Menu.all
+      # @menus = Menu.all
       @menus_future = Menu.where(date: Date.today..DateTime::Infinity.new).order(:date)
     end
   end

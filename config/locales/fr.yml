@@ -1,0 +1,71 @@
+fr:
+  April: Avril
+  August: Août
+  December: Décembre
+  February: Février
+  Friday: Vendredi
+  January: Janvier
+  July: Juillet
+  June: Juin
+  March: Mars
+  May: Mai
+  Monday: Lundi
+  November: Novembre
+  October: Octobre
+  Saturday: Samedi
+  September: Septembre
+  Sunday: Dimanche
+  Thursday: Jeudi
+  Tuesday: Mardi
+  Wednesday: Mercredi
+  date:
+      abbr_day_names:
+      - dim
+      - lun
+      - mar
+      - mer
+      - jeu
+      - ven
+      - sam
+      abbr_month_names:
+      - jan.
+      - fév.
+      - mar.
+      - avr.
+      - mai
+      - juin
+      - juil.
+      - août
+      - sept.
+      - oct.
+      - nov.
+      - déc.
+      day_names:
+      - dimanche
+      - lundi
+      - mardi
+      - mercredi
+      - jeudi
+      - vendredi
+      - samedi
+      formats:
+        default: "%d/%m/%Y"
+        long: "%e %B %Y"
+        short: "%e %b"
+      month_names:
+      - janvier
+      - février
+      - mars
+      - avril
+      - mai
+      - juin
+      - juillet
+      - août
+      - septembre
+      - octobre
+      - novembre
+      - décembre
+      order:
+      - :day
+      - :month
+      - :year

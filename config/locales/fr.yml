@@ -53,6 +53,7 @@ fr:
         long: "%e %B %Y"
         short: "%e %b"
       month_names:
+      - nil
       - janvier
       - février
       - mars
